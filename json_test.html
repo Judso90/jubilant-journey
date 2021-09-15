@@ -1,0 +1,23 @@
+<p> This is a file with a script element </p> 
+<p2> I hate those advertisements as well </p2>
+
+<script> 
+const o = { x:3, y:-4 };
+
+console.log("hello!!!!!"); 
+console.log(o.x);
+console.log(o.y);
+console.log(o.x + o.y);
+
+//Turning object into string 
+const s = JSON.stringify(o);
+console.log(s);
+
+// Turning string into object
+const t = "{\"a\":1243,\"b\":-2943}";
+const o2 = JSON.parse(t);
+console.log(o2);
+console.log(o2.a);
+console.log(o2.b);
+
+</script>
