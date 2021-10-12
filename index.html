@@ -1,68 +1,92 @@
 <html>
 
-<title> Experimentations...</title> 
-<style>
-    h1
-    {
-        font-family: 'Comic Sans MS';
-       text-align:center;
+<title> Experimentations...</title>
 
-    }
+<h1 style="font-family: 'Comic Sans MS'; text-align: center;">
+    WECLOME! 
+</h1>
+
+<!-- Tabs for future projects...-->
+<nav class="tabsNav">
+    <ul>
+        <li><a href="https://judso90.github.io/jubilant-journey/api_test.html">API Testing</a></li>
+        <li><a href="https://judso90.github.io/jubilant-journey/json_test.html">JSON Testing</a></li>
+        <!--
+        <li><a href="https://judso90.github.io/jubilant-journey/project5.html">Project 5</a></li>
+        <li><a href="https://judso90.github.io/jubilant-journey/project6.html">Project 6</a></li>
+        <li><a href="https://judso90.github.io/jubilant-journey/project7.html">Project 7</a></li>
+        <li><a href="https://judso90.github.io/jubilant-journey/project8.html">Project 8</a></li>
+            -->
+    </ul>
+</nav>
+
+<!-- Page Content -->
+<h2 style="font-family: 'Comic Sans MS'; text-align: left;">
+    Purpose of this page:
+</h2>
+
+<!--Displays results of Dog Fetch API-->
+<blockquote>
+    The Greatness of Doggos!
+    <img id="randomDog" width="250" height="250">
+</blockquote>
+
+<p style="width: 600px;height: 200px;">
+    Since im starting this off fresh into the field of CSS/HTML/Javascript area. I will push my skills by challenging
+    myself with a different task within each project. As each prject gets completed, they will be listed 
+    right here on the homepage what was done. 
+</p>
+
+<h3 style="font-family: 'Comic Sans MS'; text-align: left;">
+   Progress Report #5
+</h3>
+
+<p2 style="width: 600px;height: 200px;">
+    Incorporated quick links to previous (possibly future) assignments. "Dressed" up the main (index) file. Added a random dog API.
+</p2>
+
+</html>
+
+<!-- Using Dog API to obtain random photo of a dog...-->
+<script>
+    const url = "https://dog.ceo/api/breeds/image/random";
+    const randomDog = document.getElementById('randomDog');
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+            randomDog.src = data.message
+        })
+</script>
+
+<style>
     ul {
         font-family: 'Comic Sans MS';
         list-style-type: none;
         overflow: hidden;
         background-color: #696969;
     }
-    li
-    {
+
+    li {
         float: left;
     }
-    li a
-    {
-        display:block;
-        color: honeydew;
-        text-align:center;
+
+        li a {
+            display: block;
+            color: honeydew;
+            text-align: center;
+            padding: 10px;
+        }
+
+    blockquote {
+        float: right;
+        width: 275px;
+        font-size: 130%;
+        font-style: italic;
+        font-family: cursive;
+        margin: 0px 0px 10px 10px;
         padding: 10px;
-    }
-    blockquote
-    {
-        float:right;
-        width:275px;
-        font-size:130%;
-        font-style:italic;
-        font-family:cursive;
-        margin:0px 0px 10px 10px;
-        padding: 10px;
-        border-top:1px dashed #000000;
-        border-bottom:1px dashed #000000;
+        border-top: 1px dashed #000000;
+        border-bottom: 1px dashed #000000;
     }
 </style>
-<h1>WECLOME! </h1>
-
-<!-- Tabs for future projects...-->
-<nav class="tabsNav"> 
-    <ul>
-        <li><a href="https://judso90.github.io/jubilant-journey/api_test.html">API Testing</a></li>
-        <li><a href="https://judso90.github.io/jubilant-journey/json_test.html">JSON Testing</a></li>
-        <!--
-    <li><a href="https://judso90.github.io/jubilant-journey/project5.html">Project 5</a></li>
-    <li><a href="https://judso90.github.io/jubilant-journey/project6.html">Project 6</a></li>
-    <li><a href="https://judso90.github.io/jubilant-journey/project7.html">Project 7</a></li>
-    <li><a href="https://judso90.github.io/jubilant-journey/project8.html">Project 8</a></li>
-        -->
-    </ul>
-</nav>
-
-<h2>Purpose of this page:</h2>
-<blockquote>
-    some quote...
-</blockquote>
-<p>Since im starting this off fresh into the field of CSS/HTML/Javascript area. I will push my skills by challenging
-    myself with a different task within each project. </p>
-</html>
-
-<script>
-    const url = "https://dog.ceo/api/breeds/image/random";
-    // Original Website: https://dog.ceo/dog-api/
-</script>
