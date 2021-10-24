@@ -1,8 +1,26 @@
-<style>
-    h1 {
-        font-family: 'Comic Sans MS';
-    }
-</style>
-<h1> If you're seeing this, then you figured a work around. Still under construction!</h1>
+<html>
 
-<img src=" images/istockphoto-592021466-1024x1024.jpg" />
+
+<img id="astro_image" width="100%" height="50%"> 
+
+<h1>
+    Todays date is (<u id=" = astro_date"></u>)
+</h1>
+
+
+
+</html>
+
+<script>
+    const url = "https://api.nasa.gov/planetary/apod?api_key=NuOst8w81zx3p88lfq3SY3ugPvGu7gnqV37yc3yb"
+    const astro_image = document.getElementById("astro_image");
+    const astro_date = document.getElementById("astro_date");
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+            astro_image.src = data.url
+           
+        })
+
+</script>
