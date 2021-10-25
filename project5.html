@@ -1,26 +1,41 @@
 <html>
 
 
-<img id="astro_image" width="100%" height="50%"> 
+<div class="dates"  id="current_date"></div>
+<div class="titles" id="title" > </div>
 
-<h1>
-    Todays date is (<u id=" = astro_date"></u>)
-</h1>
+<img id="astro_image" width="100%" height="50%"/> 
+
+<div id="explain"></div>
+<div id="rights" ></div>
+    
 
 
-
-</html>
 
 <script>
-    const url = "https://api.nasa.gov/planetary/apod?api_key=NuOst8w81zx3p88lfq3SY3ugPvGu7gnqV37yc3yb"
-    const astro_image = document.getElementById("astro_image");
-    const astro_date = document.getElementById("astro_date");
-    fetch(url)
+    const url_nasa = "https://api.nasa.gov/planetary/apod?api_key=NuOst8w81zx3p88lfq3SY3ugPvGu7gnqV37yc3yb"
+
+    fetch(url_nasa)
         .then(response => response.json())
         .then(data => {
             console.log(data)
-            astro_image.src = data.url
-           
-        })
 
+
+            document.getElementById("current_date").innerHTML = "Today's date is: " + data.date;
+            document.getElementById("explain").innerHTML = data.explanation;
+            document.getElementById("title").innerHTML = data.title;
+            document.getElementById("rights").innerHTML = data.copyright;
+            document.getElementById("astro_image").src = data.url
+        }) 
 </script>
+</html>
+
+<style>
+    .titles {
+        text-align:center;
+    }
+    .dates {
+        text-align:right;
+    }
+
+</style>
