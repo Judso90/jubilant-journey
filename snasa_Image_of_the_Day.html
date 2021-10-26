@@ -1,6 +1,5 @@
 <html>
 
-
 <h1>
    <div class="titles" id="title"> </div>
 </h1>
@@ -8,16 +7,22 @@
 <p>
     <div class="dates" id="current_date"></div>
 </p>
-
 <body>
-    <div class="content">
-        <img class="images" id="astro_image" />
+    <div class="grid-container">
+        <div>
+            2
+            <div class="descrip" id="explain"></div>
+        </div>
+        <div>
+            <iframe id="astro-video">
 
-        <div class="descrip" id="explain"></div>
 
+            </iframe>
+            <img class="images" id="astro_image" />
+        </div>
     </div>
-    
 </body>
+
 
 <div class="dates" id="rights"></div>
 
@@ -30,19 +35,38 @@
        .then(response => response.json())
        .then(data => {
            console.log(data)
-
-                
+           
            document.getElementById("current_date").innerHTML = "Today's date: " + data.date;
            document.getElementById("explain").innerHTML = data.explanation;
            document.getElementById("title").innerHTML = data.title;
            document.getElementById("rights").innerHTML = "&#169" + data.copyright;
-           document.getElementById("astro_image").src = data.url;
+           if (data.media_type == "video") {
+               document.getElementById("astro_video").src = data.url;
+           }
+           else {
+               document.getElementById("astro_image").src = data.url;
+           }
+
+
        })
     </script>
 </html>
 
 <style>
-    .content {
+    .grid-container {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        grid-gap: 10px;
+        background-color: #2196F3;
+        padding: 10px;
+    }
+
+        .grid-container > div {
+            background-color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            padding: 20px 0;
+        }
+        .content {
         max-width: 800px;
         margin: auto;
 
