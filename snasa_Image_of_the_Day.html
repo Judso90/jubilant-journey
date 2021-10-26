@@ -1,0 +1,75 @@
+<html>
+
+
+<h1>
+   <div class="titles" id="title"> </div>
+</h1>
+
+<p>
+    <div class="dates" id="current_date"></div>
+</p>
+
+<body>
+    <div class="content">
+        <img class="images" id="astro_image" />
+
+        <div class="descrip" id="explain"></div>
+
+    </div>
+    
+</body>
+
+<div class="dates" id="rights"></div>
+
+
+
+<script>
+   const url_nasa = "https://api.nasa.gov/planetary/apod?api_key=NuOst8w81zx3p88lfq3SY3ugPvGu7gnqV37yc3yb"
+
+   fetch(url_nasa)
+       .then(response => response.json())
+       .then(data => {
+           console.log(data)
+
+                
+           document.getElementById("current_date").innerHTML = "Today's date: " + data.date;
+           document.getElementById("explain").innerHTML = data.explanation;
+           document.getElementById("title").innerHTML = data.title;
+           document.getElementById("rights").innerHTML = "&#169" + data.copyright;
+           document.getElementById("astro_image").src = data.url;
+       })
+    </script>
+</html>
+
+<style>
+    .content {
+        max-width: 800px;
+        margin: auto;
+
+    }
+    .titles {
+        text-align:center;
+        
+    }
+    .dates {
+        margin:auto;
+        max-width:800px;
+        text-align:right;
+        
+    }
+    .images {
+        max-width: 150%;
+        height: 50%;
+        float: right;
+        padding-left:10px;
+
+    } 
+    .descrip {
+    max-height:500px;
+    max-width:500px;
+    text-align:justify;
+    border-block:dashed;
+    text-size-adjust:auto;
+    }
+
+</style>
