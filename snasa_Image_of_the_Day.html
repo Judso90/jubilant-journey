@@ -27,18 +27,28 @@
         </div>
         <!--Sets image/video to second box-->
         <div>
-            <img ="astro_image" class="images" />
-
-            <iframe src=" " id="astro_video" title="title"
-                    height="250px" width="300px"
-                    allowfullscreen>
-            </iframe>
+            <div id="medias" ></div>
             <div class="dates" id="rights"></div>
         </div>
+
     </div>
 
 <script>
    const url_nasa = "https://api.nasa.gov/planetary/apod?api_key=NuOst8w81zx3p88lfq3SY3ugPvGu7gnqV37yc3yb"
+    /*Fullfills If Else Statement */
+    let image_settings = `
+        <div>
+            <img id="astro_image" class="images" />
+        </div>
+        `;
+    let video_settings = `
+    <div>
+        <iframe src=" "
+              id="astro_video" title="title"
+              height="250px" width="300px"
+              allowfullscreen>
+        </iframe>
+    </div> `;
     /*Sends request + key in return for JSON object */
    fetch(url_nasa)
        .then(response => response.json())
@@ -46,6 +56,7 @@
            //Displays JSON(data) information in cosole.
            console.log(data)
            console.log(data.media_type)
+
            //Grabs date that was provided by JSON (Usually Current)
            document.getElementById("current_date").innerHTML = "Date Publicized:  " + data.date;
            //Grabs provided description of image
@@ -56,12 +67,15 @@
            document.getElementById("rights").innerHTML = "&#169" + data.copyright;
            //Checks what media (.jpg or .mp4) it is and sends the correct information to main class
            if (data.media_type == "video") {
+               document.getElementById("medias").innerHTML = video_settings;
                document.getElementById("astro_video").src = data.url;
            }
            else {
+               document.getElementById("medias").innerHTML = image_settings;
                document.getElementById("astro_image").src = data.url;
            }
-       })
+       }
+   )
     </script>
 </html>
 
@@ -100,8 +114,6 @@
     .images {
         max-width: 150%;
         height: 50%;
-        float: right;
-        padding-left:10px;
     } 
     /*Sets description proportions*/
     .descrip {
