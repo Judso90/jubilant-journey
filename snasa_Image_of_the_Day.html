@@ -1,99 +1,132 @@
 <html>
-
+<!--Tabs for Navigation-->
+<nav class="tabsNav">
+    <ul>
+        <li><a href="https://judso90.github.io/jubilant-journey/">Home</a></li>
+        <li><a href="https://judso90.github.io/jubilant-journey/api_test.html">API Testing</a></li>
+        <li><a href="https://judso90.github.io/jubilant-journey/json_test.html">JSON Testing</a></li>
+        <li><a href="https://judso90.github.io/jubilant-journey/snasa_Image_of_the_Day.html">Nasa Image of the Day</a></li>
+        <!--
+        <li><a href="https://judso90.github.io/jubilant-journey/project6.html">Project 6</a></li>
+        <li><a href="https://judso90.github.io/jubilant-journey/project7.html">Project 7</a></li>
+        <li><a href="https://judso90.github.io/jubilant-journey/project8.html">Project 8</a></li>
+            -->
+    </ul>
+</nav>
+<!--Main Program begins-->
 <h1>
-   <div class="titles" id="title"> </div>
+    <div class="titles" id="title"> </div>
+   
 </h1>
-
-<p>
-    <div class="dates" id="current_date"></div>
-</p>
-<body>
+    <!--Grid begins left to right-->
     <div class="grid-container">
         <div>
-            2
+            Description
             <div class="descrip" id="explain"></div>
+            <div id="current_date"></div>
         </div>
+        <!--Sets image/video to second box-->
         <div>
-            <iframe id="astro-video">
+            <img ="astro_image" class="images" />
 
-
+            <iframe src=" " id="astro_video" title="title"
+                    height="250px" width="300px"
+                    allowfullscreen>
             </iframe>
-            <img class="images" id="astro_image" />
+            <div class="dates" id="rights"></div>
         </div>
     </div>
-</body>
-
-
-<div class="dates" id="rights"></div>
-
-
 
 <script>
    const url_nasa = "https://api.nasa.gov/planetary/apod?api_key=NuOst8w81zx3p88lfq3SY3ugPvGu7gnqV37yc3yb"
-
+    /*Sends request + key in return for JSON object */
    fetch(url_nasa)
        .then(response => response.json())
        .then(data => {
+           //Displays JSON(data) information in cosole.
            console.log(data)
-           
-           document.getElementById("current_date").innerHTML = "Today's date: " + data.date;
+           console.log(data.media_type)
+           //Grabs date that was provided by JSON (Usually Current)
+           document.getElementById("current_date").innerHTML = "Date Publicized:  " + data.date;
+           //Grabs provided description of image
            document.getElementById("explain").innerHTML = data.explanation;
+           //Grabs provided title of Image
            document.getElementById("title").innerHTML = data.title;
+           //Grabs copyright of image
            document.getElementById("rights").innerHTML = "&#169" + data.copyright;
+           //Checks what media (.jpg or .mp4) it is and sends the correct information to main class
            if (data.media_type == "video") {
                document.getElementById("astro_video").src = data.url;
            }
            else {
                document.getElementById("astro_image").src = data.url;
            }
-
-
        })
     </script>
 </html>
 
 <style>
+    /*Creats a grid where two boxes are disp layed with each information*/
     .grid-container {
         display: grid;
-        grid-template-columns: auto auto auto;
+        grid-template-columns: max-content max-content;
         grid-gap: 10px;
-        background-color: #2196F3;
-        padding: 10px;
-    }
+        background-color: dimgrey;
+        padding: 50px;
+        align-content:center;
+        justify-content:center;
 
-        .grid-container > div {
-            background-color: rgba(255, 255, 255, 0.8);
-            text-align: center;
-            padding: 20px 0;
         }
-        .content {
-        max-width: 800px;
-        margin: auto;
-
-    }
+    /*Formats each box within the grid*/
+        .grid-container > div {
+            background-color:lightgrey;
+            padding: 25px 50px;
+            text-align:center;
+            border:solid;
+            
+        }
+        /*Centers inforamtion with any size of window *May look ugly when super mimized!!* */
     .titles {
         text-align:center;
-        
+        font-family:'Comic Sans MS';     
     }
+    /*sets Dates proportions*/
     .dates {
         margin:auto;
         max-width:800px;
-        text-align:right;
-        
+        text-align:right;        
     }
+    /*Sets image proportions*/
     .images {
         max-width: 150%;
         height: 50%;
         float: right;
         padding-left:10px;
-
     } 
+    /*Sets description proportions*/
     .descrip {
     max-height:500px;
     max-width:500px;
     text-align:justify;
-    border-block:dashed;
+    border-block:solid;
     text-size-adjust:auto;
     }
+    /*Tabs for navigation*/
+    ul {
+        font-family: 'Comic Sans MS';
+        list-style-type: none;
+        overflow: hidden;
+        background-color: dimgrey;
+    }
 
+    li {
+        float: left;
+    }
+
+        li a {
+            display: block;
+            color: honeydew;
+            text-align: center;
+            padding: 10px;
+        }
 </style>
