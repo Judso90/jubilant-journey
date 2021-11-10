@@ -1,0 +1,145 @@
+<html>
+<title>Rando Facto</title>
+<!--Tabs at top-->
+<nav class="tabsNav">
+    <ul>
+        <li><a href="https://judso90.github.io/jubilant-journey/">Home</a></li>
+        <li><a href="https://judso90.github.io/jubilant-journey/api_test.html">API Testing</a></li>
+        <li><a href="https://judso90.github.io/jubilant-journey/json_test.html">JSON Testing</a></li>
+        <li><a href="https://judso90.github.io/jubilant-journey/snasa_Image_of_the_Day.html">Nasa Image of the Day</a></li>
+        <li><a href="https://judso90.github.io/jubilant-journey/Random_Fact.html">Random Fact</a></li>
+        <!--
+        <li><a href="https://judso90.github.io/jubilant-journey/project7.html">Project 7</a></li>
+        <li><a href="https://judso90.github.io/jubilant-journey/project8.html">Project 8</a></li>
+            -->
+    </ul>
+</nav>
+<!--End of Tabs-->
+<!--Background box-->
+<div class="grid">
+    BackGround
+    <!--Main Box-->
+    <div class="grid_Main">
+        
+        <div class="grid_information">
+            <!--Sets Fact -->
+            <div style="background-color:white;">
+                <div>
+                    <h2 style="text-align: center">Some Random Fact:</h2>
+                    <h2 id="facts" style="text-align:center"> </h2>
+                </div>
+            </div>
+        </div>
+        <div class="grid_button">
+            <button type="button" onclick="getAgain()" >Want another fact?</button>
+        </div>
+    </div>
+
+    <!--Previous Information Stored-->
+
+    <div class="grid_sub_Box">
+        <div style="background-color:white;">
+            <h2 style="text-align:center">Previous quote was: </h2>
+            <h3 id="previous" style="text-align:center;"></h3>
+        </div>
+    </div>
+
+    <!--End of Previous Infomation Stored-->
+    
+</div>
+
+
+</html>
+
+<script>
+
+    const url_facts = "https://uselessfacts.jsph.pl/random.json?language=en"
+    let previous = "none"
+    //Calls the API first
+    fetch(url_facts)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+            document.getElementById("facts").innerHTML = data.text;
+            previous = data.text;
+        })
+        
+    //When button is clicked, will set previous to a box and set new one top
+    function getAgain() {        
+        fetch(url_facts)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                document.getElementById("facts").innerHTML = data.text;
+                document.getElementById("previous").innerHTML = previous;
+                previous = data.text;
+            })
+    }
+
+
+    let fill = `
+        <div id="previous" class="grid_sub_Box">  <div>
+        `;
+
+</script>
+
+<style>
+    /* Main Box*/
+    .grid {
+        min-width:1500px;
+        background-color: black;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-auto-rows: 150px;
+        padding: 50px 50px 50px 50px;
+        grid-gap: 25px;
+    }
+    .grid_Main {
+        min-width: 1000px;
+        grid-column: 2 / 5;
+        grid-row: 1 / 3;
+        background-color: grey;
+        display:grid;
+        grid-template-rows:subgrid;
+    }
+    .grid_information {
+        min-width:500px;
+        padding-inline: 25px 25px;
+        align-items:start;
+    }
+    .grid_button {
+        display:flex;
+        justify-content:center;
+        align-items:end;
+        padding-block-end:15px;
+
+    }
+    .grid_sub_Box {
+        grid-column: 2 / 5;
+        grid-row: 3;
+        background-color: lightgray;
+    }
+
+
+    /*Tab Class*/
+    ul {
+        font-family: 'Comic Sans MS';
+        list-style-type: none;
+        background-color: dimgray;
+        margin: 0;
+        overflow-x: hidden;
+        min-width: 1500px;
+    }
+
+    li {
+        float: left;
+    }
+
+        li a {
+            display: block;
+            color: honeydew;
+            text-align: center;
+            padding: 10px;
+        }
+    /*Tab Class End*/
+</style>
